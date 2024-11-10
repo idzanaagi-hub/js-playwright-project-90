@@ -1,5 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 import { UsersPage } from "../pages/usersPage";
+import { LabelsPage } from "./labelsPage";
 
 export class MainPage {
   readonly page: Page;
@@ -34,8 +35,9 @@ export class MainPage {
     return new UsersPage(this.page);
   }
 
-  async gotoLabels() {
+  async gotoLabels(): Promise<LabelsPage> {
     await this.labels.click();
+    return new LabelsPage(this.page);
   }
 
   async gotoTaskStatues() {

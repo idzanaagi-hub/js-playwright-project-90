@@ -1,6 +1,7 @@
 import { Page, Locator } from "@playwright/test";
 import { UsersPage } from "../pages/usersPage";
 import { LabelsPage } from "./labelsPage";
+import { StatusesPage } from "./statuses.spec";
 
 export class MainPage {
   readonly page: Page;
@@ -18,7 +19,7 @@ export class MainPage {
     this.tasks = page.locator('[href="#/tasks"]');
     this.users = page.locator('[href="#/users"]');
     this.labels = page.locator('[href="#/labels"]');
-    this.taskStatues = page.locator('[href="#/task-statuses"]');
+    this.taskStatues = page.locator('[href="#/task_statuses"]');
   }
 
   async logout() {
@@ -40,7 +41,8 @@ export class MainPage {
     return new LabelsPage(this.page);
   }
 
-  async gotoTaskStatues() {
+  async gotoTaskStatues(): Promise<StatusesPage> {
     await this.taskStatues.click();
+    return new StatusesPage(this.page);
   }
 }
